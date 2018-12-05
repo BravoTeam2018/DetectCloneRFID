@@ -1,6 +1,7 @@
 package com.cit;
 
 import com.cit.config.ServicesConfig;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -9,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
+@Category(IntegrationTests.class)
 @ContextConfiguration(classes = ServicesConfig.class)
 @AutoConfigureMockMvc
 @RunWith(value = SpringRunner.class)

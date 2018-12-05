@@ -1,7 +1,9 @@
 package com.cit.cucumber;
 
+import com.cit.CucumberTests;
 import com.cit.DetectCloneRFIDApplication;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Category(CucumberTests.class)
 @Slf4j
 @SpringBootTest(classes = DetectCloneRFIDApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration

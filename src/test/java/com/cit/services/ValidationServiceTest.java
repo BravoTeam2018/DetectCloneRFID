@@ -1,5 +1,6 @@
 package com.cit.services;
 
+import com.cit.UnitTests;
 import com.cit.config.ServicesConfig;
 import com.cit.models.Event;
 import com.cit.models.GPSCoordinate;
@@ -11,6 +12,7 @@ import com.cit.services.validation.ValidationRulesResult;
 import com.cit.transfer.ValidationServiceRestResponseDTO;
 import com.deliveredtechnologies.rulebook.lang.RuleBookBuilder;
 import com.deliveredtechnologies.rulebook.model.RuleBook;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 
+@Category(UnitTests.class)
 @ContextConfiguration(classes = {ServicesConfig.class})
 class ValidationServiceTest {
 

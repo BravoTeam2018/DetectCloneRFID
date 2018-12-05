@@ -1,11 +1,13 @@
 package com.cit.services;
 
 import com.cit.DetectCloneRFIDApplication;
+import com.cit.UnitTests;
 import com.cit.config.ServicesConfig;
 import com.cit.models.Event;
 import com.cit.models.GPSCoordinate;
 import com.cit.models.Location;
 import com.cit.services.eventstore.EventStoreService;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,8 @@ import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+@Category(UnitTests.class)
 @ContextConfiguration(classes = {ServicesConfig.class, DetectCloneRFIDApplication.class})
 @TestPropertySource
 class EventStoreServiceTest {

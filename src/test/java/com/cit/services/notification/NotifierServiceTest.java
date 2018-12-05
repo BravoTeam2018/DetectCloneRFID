@@ -1,5 +1,7 @@
 package com.cit.services.notification;
 
+import com.cit.IntegrationTests;
+import com.cit.UnitTests;
 import com.cit.config.ServicesConfig;
 import io.moquette.broker.Server;
 import io.moquette.broker.config.IConfig;
@@ -12,6 +14,7 @@ import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +26,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+@Category(IntegrationTests.class)
 @ContextConfiguration(classes = ServicesConfig.class)
 class NotifierServiceTest {
 

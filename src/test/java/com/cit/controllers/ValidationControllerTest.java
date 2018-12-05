@@ -1,5 +1,6 @@
 package com.cit.controllers;
 
+import com.cit.UnitTests;
 import com.cit.config.ServicesConfig;
 import com.cit.exceptions.CardIdException;
 import com.cit.exceptions.PanelIdException;
@@ -15,6 +16,7 @@ import com.cit.services.validation.ValidationRulesResult;
 import com.cit.transfer.ValidationServiceRestResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Rule;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,6 +51,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+@Category(UnitTests.class)
 @ContextConfiguration(classes = {ServicesConfig.class})
 @SpringBootTest
 @RunWith(SpringRunner.class)

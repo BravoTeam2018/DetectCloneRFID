@@ -1,11 +1,14 @@
 package com.cit.transfer;
 
+import com.cit.UnitTests;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.Test;
 import pl.pojo.tester.api.assertion.Method;
 
 
 import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
 
+@Category(UnitTests.class)
 public class ValidationServiceRestResponseDTOTest {
 
 

@@ -1,9 +1,13 @@
 package com.cit.models;
 
+import com.cit.UnitTests;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import pl.pojo.tester.api.assertion.Method;
 import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
 
+
+@Category(UnitTests.class)
 public class DistanceResultTest {
 
     @Test

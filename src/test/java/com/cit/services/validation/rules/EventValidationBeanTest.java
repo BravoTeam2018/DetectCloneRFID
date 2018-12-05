@@ -1,12 +1,14 @@
 package com.cit.services.validation.rules;
 
 import com.cit.Helper;
+import com.cit.UnitTests;
 import com.cit.config.ServicesConfig;
 import com.cit.models.Event;
 import com.cit.models.Location;
 import com.cit.services.distance.*;
 import com.cit.services.locator.LocatorService;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -26,6 +28,7 @@ import static org.springframework.test.web.client.ExpectedCount.manyTimes;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
+@Category(UnitTests.class)
 @Slf4j
 @ContextConfiguration(classes = {ServicesConfig.class})
 public class EventValidationBeanTest {

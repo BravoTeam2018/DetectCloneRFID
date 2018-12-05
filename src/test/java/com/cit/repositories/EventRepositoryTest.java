@@ -1,9 +1,11 @@
 package com.cit.repositories;
 
 
+import com.cit.UnitTests;
 import com.cit.models.Event;
 import com.cit.models.GPSCoordinate;
 import com.cit.models.Location;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +21,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-
+@Category(UnitTests.class)
 class EventRepositoryTest {
 
     @Mock

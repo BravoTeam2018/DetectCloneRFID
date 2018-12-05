@@ -1,5 +1,6 @@
 package com.cit.services;
 
+import com.cit.UnitTests;
 import com.cit.config.ServicesConfig;
 import com.cit.exceptions.PanelNotFoundException;
 import com.cit.models.Location;
@@ -7,6 +8,7 @@ import com.cit.services.locator.LocatorService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -25,7 +27,7 @@ import static org.springframework.test.web.client.ExpectedCount.once;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
-
+@Category(UnitTests.class)
 @ContextConfiguration(classes = ServicesConfig.class)
 class LocatorServiceTest {
 
