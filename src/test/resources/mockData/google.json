@@ -1,0 +1,26 @@
+{
+  "destination_addresses": [
+    "Bishopstown, CIT Campus, Bishopstown, Cork, Co. Cork, Ireland"
+  ],
+  "origin_addresses": [
+    "Rossa Avenue, Bishopstown, Cork, T12 P928, Ireland"
+  ],
+  "rows": [
+    {
+      "elements": [
+        {
+          "distance": {
+            "text": "0.2 km",
+            "value": 165
+          },
+          "duration": {
+            "text": "2 mins",
+            "value": 122
+          },
+          "status": "OK"
+        }
+      ]
+    }
+  ],
+  "status": "OK"
+}

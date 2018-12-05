@@ -1,0 +1,14 @@
+language: java
+email:
+  recipients:
+  - eamon.foy@mycit.ie
+jdk:
+- oraclejdk8
+install:
+- ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script:
+- ./mvnw test
+env:
+  global:
+before_install:
+- chmod +x mvnw
