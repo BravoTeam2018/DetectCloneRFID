@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>rfidclonespy</name>
+	<name>DetectCloneRFID</name>
 	<description>POC for Cloned RFID Card Detection System</description>
 
 	<parent>
