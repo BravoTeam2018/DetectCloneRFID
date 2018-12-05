@@ -8,6 +8,8 @@ install:
 - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
 - ./mvnw test
+- ./mvnw clean install -B
+- ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.projectKey=BravoTeam2018_DetectCloneRFID -Dsonar.organization=bravoteam2018-1 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=f37b3e181a488a1bb493c7ff59d0d686903bb7a5
 env:
   global:
 before_install:
