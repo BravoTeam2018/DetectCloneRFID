@@ -1,6 +1,5 @@
 <configuration>
 
-
     <include resource="org/springframework/boot/logging/logback/base.xml" />
     <logger name="*.myapp" level="error" />
     <logger name="org.springframework.core " level="error" />
