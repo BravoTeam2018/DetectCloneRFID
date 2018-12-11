@@ -1,8 +1,10 @@
 package com.cit.controllers;
 
 
+import com.cit.UnitTests;
 import com.cit.config.SwaggerConfig;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -21,6 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
+@Category(UnitTests.class)
 @ContextConfiguration(classes = {SwaggerConfig.class})
 @SpringBootTest
 @RunWith(SpringRunner.class)

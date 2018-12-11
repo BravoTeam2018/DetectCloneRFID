@@ -1,6 +1,7 @@
 package com.cit.services.distance;
 
 import com.cit.Helper;
+import com.cit.UnitTests;
 import com.cit.config.ServicesConfig;
 import com.cit.models.DistanceResult;
 import com.cit.models.GPSCoordinate;
@@ -8,6 +9,7 @@ import com.cit.models.Location;
 import com.cit.services.distance.DistanceFacadeService;
 import com.cit.services.distance.GoogleDistanceService;
 import com.cit.services.distance.IDistanceService;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -24,6 +26,8 @@ import static org.springframework.test.web.client.ExpectedCount.once;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
+
+@Category(UnitTests.class)
 @ContextConfiguration(classes = ServicesConfig.class)
 class DistanceResultFacadeServiceTest {
 

@@ -1,12 +1,14 @@
 package com.cit.services.validation.rules;
 
 import com.cit.Helper;
+import com.cit.UnitTests;
 import com.cit.config.ServicesConfig;
 import com.cit.models.Event;
 import com.cit.models.Location;
 import com.cit.services.distance.PanelDistanceCalculator;
 import com.cit.services.locator.LocatorService;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,6 +24,7 @@ import java.util.UUID;
 import static com.cit.Helper.createTestEvent;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Category(UnitTests.class)
 @Slf4j
 @ContextConfiguration(classes={ServicesConfig.class})
 class PanelDistanceResultCalculatorTest {

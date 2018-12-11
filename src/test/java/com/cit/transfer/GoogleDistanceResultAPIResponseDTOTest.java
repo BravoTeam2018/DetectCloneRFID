@@ -1,10 +1,13 @@
 package com.cit.transfer;
 
 import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
+import com.cit.UnitTests;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.Test;
 import pl.pojo.tester.api.assertion.Method;
 
-
+@Category(UnitTests.class)
 public class GoogleDistanceResultAPIResponseDTOTest {
 
     @Test

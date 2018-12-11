@@ -5,6 +5,7 @@ import com.cit.models.Location;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.experimental.categories.Category;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.UUID;
 
+@Category(UnitTests.class)
 public class Helper {
 
     public static final String CIT_LIBRARY_WEST_WING_ENTRY_DOORS = "580ddc98-0db9-473d-a721-348f353f1d2b";
