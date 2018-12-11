@@ -7,6 +7,8 @@ public final class TravelModes {
     }
 
     public static final String WALKING="WALKING";
+    public static final String WALK_AND_ELAVOTOR="WALK_AND_ELAVOTOR";
     public static final String DRIVING="DRIVING";
     public static final String FLY_DRIVE="flydrive";
+
 }

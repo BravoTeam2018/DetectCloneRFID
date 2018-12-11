@@ -1,4 +1,4 @@
-package com.cit.services;
+package com.cit.services.eventstore;
 
 import com.cit.DetectCloneRFIDApplication;
 import com.cit.config.ServicesConfig;

@@ -4,6 +4,7 @@ import com.cit.Helper;
 import com.cit.config.ServicesConfig;
 import com.cit.models.Event;
 import com.cit.models.Location;
+import com.cit.services.distance.PanelDistanceCalculator;
 import com.cit.services.locator.LocatorService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;

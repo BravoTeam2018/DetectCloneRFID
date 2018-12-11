@@ -1,4 +1,4 @@
-package com.cit.services;
+package com.cit.services.locator;
 
 import com.cit.config.ServicesConfig;
 import com.cit.exceptions.PanelNotFoundException;

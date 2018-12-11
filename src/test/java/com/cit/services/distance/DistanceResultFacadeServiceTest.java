@@ -1,4 +1,4 @@
-package com.cit.services;
+package com.cit.services.distance;
 
 import com.cit.Helper;
 import com.cit.config.ServicesConfig;
@@ -64,16 +64,20 @@ class DistanceResultFacadeServiceTest {
 
         mockServer = MockRestServiceServer.createServer(gateway);
 
-        googleDistanceService = new GoogleDistanceService(restTemplate,apikey);
+
     }
 
     @Test
     void testSGoogleDistanceService_walking() throws IOException {
 
+        googleDistanceService = new GoogleDistanceService(restTemplate,apikey);
+        distanceFacadeService = new DistanceFacadeService(googleDistanceService,new LocalDistanceService(), new FlyAndDriveDistanceService());
+
+
         mockServer.expect(once(), requestTo(googleDistanceService.getRequestURL(CITWest, CITNorth, GoogleDistanceService.Mode.WALKING)))
                 .andRespond(withSuccess(Helper.getGoogleJson("mockData/google.json"), MediaType.APPLICATION_JSON));
 
-        DistanceResult responseDTO = googleDistanceService.execute(CITWest, CITNorth, IDistanceService.Mode.WALKING);
+        DistanceResult responseDTO = distanceFacadeService.execute(CITWest, CITNorth, IDistanceService.Mode.WALKING);
 
         System.out.println(responseDTO);
         assertEquals(true, responseDTO.getStatus().equals("OK"));
@@ -82,10 +86,14 @@ class DistanceResultFacadeServiceTest {
     @Test
     void testSGoogleDistanceService_driving() throws IOException {
 
+        googleDistanceService = new GoogleDistanceService(restTemplate,apikey);
+        distanceFacadeService = new DistanceFacadeService(googleDistanceService,new LocalDistanceService(), new FlyAndDriveDistanceService());
+
+
         mockServer.expect(once(), requestTo(googleDistanceService.getRequestURL(CITWest, CITNorth, GoogleDistanceService.Mode.DRIVING)))
                 .andRespond(withSuccess(Helper.getGoogleJson("mockData/google.json"), MediaType.APPLICATION_JSON));
 
-        DistanceResult responseDTO =  responseDTO = googleDistanceService.execute(CITWest, CITNorth, IDistanceService.Mode.DRIVING);
+        DistanceResult responseDTO =  responseDTO = distanceFacadeService.execute(CITWest, CITNorth, IDistanceService.Mode.DRIVING);
 
         System.out.println(responseDTO);
         assertEquals(true, responseDTO.getStatus().equals("OK"));

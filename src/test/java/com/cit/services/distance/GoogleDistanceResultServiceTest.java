@@ -1,4 +1,4 @@
-package com.cit.services;
+package com.cit.services.distance;
 
 import com.cit.Helper;
 import com.cit.config.ServicesConfig;

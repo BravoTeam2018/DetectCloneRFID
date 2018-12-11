@@ -11,10 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.Collections;
 
+import static com.cit.utility.JsonUtility.toJsonString;
+
 @Configuration
 @Service
 @Slf4j
 public class GoogleDistanceService implements IDistanceService {
+
     private String apiKey;
     private RestTemplate restTemplate;
 
@@ -54,6 +57,11 @@ public class GoogleDistanceService implements IDistanceService {
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 
         ResponseEntity<GoogleDistanceAPIResponseDTO> result = restTemplate.exchange(getRequestURL(apiKey,current,previous,mode), HttpMethod.GET, entity, GoogleDistanceAPIResponseDTO.class);
+
+        if(log.isDebugEnabled()) {
+            log.debug("Google result = {}", toJsonString(result));
+        }
+
         if( result.getStatusCode().is2xxSuccessful() ) {
 
             GoogleDistanceAPIResponseDTO googleResult =  result.getBody();
@@ -64,15 +72,32 @@ public class GoogleDistanceService implements IDistanceService {
             if(status.equals("REQUEST_DENIED"))
                 throw new IllegalArgumentException("GoogleDistanceService REQUEST_DENIED : " + result.getBody() );
 
-            int dis = googleResult.getRows().get(0).getElements().get(0).getDistance().getValue();
-            int dur = googleResult.getRows().get(0).getElements().get(0).getDuration().getValue();
-
             distanceResult = DistanceResult.builder()
-                    .distance(dis)
-                    .duration(dur)
+                    .distance(-1)
+                    .duration(-1)
                     .mode(mode.toString())
-                    .status("OK")
+                    .status("ZERO_RESULTS")
                     .build();
+
+
+            if(status.equals("OK") && (googleResult.getRows().listIterator().hasNext())) {
+
+                boolean results = ! googleResult.getRows().get(0).getElements().get(0).getStatus().equals("ZERO_RESULTS");
+
+                if(results) {
+
+                    int dis = googleResult.getRows().get(0).getElements().get(0).getDistance().getValue();
+                    int dur = googleResult.getRows().get(0).getElements().get(0).getDuration().getValue();
+
+                    distanceResult = DistanceResult.builder()
+                            .distance(dis)
+                            .duration(dur)
+                            .mode(mode.toString())
+                            .status("OK")
+                            .build();
+
+                }
+            }
 
         }
 

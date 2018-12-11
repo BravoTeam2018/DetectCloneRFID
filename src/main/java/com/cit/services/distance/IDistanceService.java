@@ -5,6 +5,6 @@ import com.cit.models.Location;
 
 public interface IDistanceService {
 
-    enum Mode{WALKING, DRIVING, FLY_DRIVE}
+    enum Mode{WALKING, WALK_AND_ELAVOTOR, DRIVING, FLY_DRIVE}
     DistanceResult execute(Location current, Location previous, Mode mode );
 }

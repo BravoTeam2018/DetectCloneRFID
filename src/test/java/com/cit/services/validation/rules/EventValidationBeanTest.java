@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
-import static java.lang.Math.abs;
+import static com.cit.Helper.STANFORD_DEPARTMENT_OF_ECONOMICS_1ST_FLOOR_WEST_WING_CA_USA;
+import static com.cit.Helper.STANFORD_DEPARTMENT_OF_ECONOMICS_2ND_FLOOR_WEST_WING_CA_USA;
+import static com.cit.Helper.STANFORD_DEPARTMENT_OF_ECONOMICS_SERRA_MALL_WEST_WING_CA_USA;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.client.ExpectedCount.manyTimes;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
@@ -99,7 +101,7 @@ public class EventValidationBeanTest {
         Event currentEvent;
 
         long timestamp1 = 1541349919142l;
-        long timestamp2 = timestamp1 + (1*60000); // 1 minutes later
+        long timestamp2 = timestamp1 + (60000); // 1 minutes later
 
         previousEvent = Helper.createTestEvent( pannelMap,"7907775e-15ac-415f-a99c-e978856c8ec0", "7907775e-15ac-415f-a99c-e978856c8ec0", timestamp1);
         currentEvent = Helper.createTestEvent( pannelMap,"7907775e-15ac-415f-a99c-e978856c8ec0", "7907775e-15ac-415f-a99c-e978856c8ec0", timestamp2);
@@ -120,9 +122,6 @@ public class EventValidationBeanTest {
 
     }
 
-    @Test
-    void isItPossibleToWalkBetweenCurrentAndPreviousEvent() {
-    }
 
     @Test
     void isItPossibleToWalkBetweenCurrentAndPreviousEvent_BugBroughtBackInfinityDistance() throws IOException {
@@ -140,7 +139,7 @@ public class EventValidationBeanTest {
         Event currentEvent;
 
         previousEvent = Helper.createTestEvent( pannelMap,"7907775e-15ac-415f-a99c-e978856c8ec0", "7907775e-15ac-415f-a99c-e978856c8ec0", 1541349919142l);
-        currentEvent = Helper.createTestEvent( pannelMap,"580ddc98-0db9-473d-a721-348f353f1d2b", "580ddc98-0db9-473d-a721-348f353f1d2b", 1541349936961l);
+        currentEvent = Helper.createTestEvent( pannelMap,"580ddc98-0db9-473d-a721-348f353f1d2b", "580ddc98-0db9-473d-a721-348f353f1d2b", 1541349936961L);
 
 
         mockServer.expect(manyTimes(), requestTo(uri))
@@ -218,7 +217,7 @@ public class EventValidationBeanTest {
         Event previousEvent;
         Event currentEvent;
 
-        long timestamp1 = 1541349919142l;
+        long timestamp1 = 1541349919142L;
         long timestamp2 = timestamp1 + (3*60000); // 3 minutes later
 
 
@@ -303,7 +302,69 @@ public class EventValidationBeanTest {
     }
 
 
+    @Test
+    void bothCurrentAndPreviousEventsHaveStairsOrElevator() throws IOException {
 
+        // Given
+
+        Event previousEvent;
+        Event currentEvent;
+
+        long timestamp1 = 1541349919142l;
+        long timestamp2 = timestamp1 + (3*60000); // 3 minutes later
+
+        String cardUnderTest = "7907775e-15ac-415f-a99c-e978856c8ec0";
+
+
+        previousEvent = Helper.createTestEvent( pannelMap, STANFORD_DEPARTMENT_OF_ECONOMICS_1ST_FLOOR_WEST_WING_CA_USA, cardUnderTest, timestamp1);
+        currentEvent = Helper.createTestEvent( pannelMap, STANFORD_DEPARTMENT_OF_ECONOMICS_2ND_FLOOR_WEST_WING_CA_USA, cardUnderTest, timestamp2);
+
+
+        // then
+
+        mockServer.expect(manyTimes(), requestTo(googleDistanceService.getRequestURL(currentEvent.getLocation(), previousEvent.getLocation(), IDistanceService.Mode.WALK_AND_ELAVOTOR)))
+                .andRespond(withSuccess(Helper.getGoogleJson("mockData/google.json"), MediaType.APPLICATION_JSON));
+
+        EventValidationBean eventValidationBean = new EventValidationBean(currentEvent, previousEvent, distanceFacadeService);
+
+        // when
+
+        assertEquals(true, eventValidationBean.hasCurrentEventStairsOrElevators());
+        assertEquals(true, eventValidationBean.hasPreviousEventStairsOrElevators());
+
+    }
+
+    @Test
+    void onlyCurrentEventHasStairsOrElevator() throws IOException {
+
+        // Given
+
+        Event previousEvent;
+        Event currentEvent;
+
+        long timestamp1 = 1541349919142l;
+        long timestamp2 = timestamp1 + (3*60000); // 3 minutes later
+
+        String cardUnderTest = "7907775e-15ac-415f-a99c-e978856c8ec0";
+
+
+        previousEvent = Helper.createTestEvent( pannelMap, STANFORD_DEPARTMENT_OF_ECONOMICS_SERRA_MALL_WEST_WING_CA_USA, cardUnderTest, timestamp1);
+        currentEvent = Helper.createTestEvent( pannelMap, STANFORD_DEPARTMENT_OF_ECONOMICS_2ND_FLOOR_WEST_WING_CA_USA, cardUnderTest, timestamp2);
+
+
+        // then
+
+        mockServer.expect(manyTimes(), requestTo(googleDistanceService.getRequestURL(currentEvent.getLocation(), previousEvent.getLocation(), IDistanceService.Mode.WALK_AND_ELAVOTOR)))
+                .andRespond(withSuccess(Helper.getGoogleJson("mockData/google.json"), MediaType.APPLICATION_JSON));
+
+        EventValidationBean eventValidationBean = new EventValidationBean(currentEvent, previousEvent, distanceFacadeService);
+
+        // when
+
+        assertEquals(true, eventValidationBean.hasCurrentEventStairsOrElevators());
+        assertEquals(false, eventValidationBean.hasPreviousEventStairsOrElevators());
+
+    }
 
 
 
