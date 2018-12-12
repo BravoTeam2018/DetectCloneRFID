@@ -2,6 +2,7 @@ language: java
 email:
   recipients:
   - eamon.foy@mycit.ie
+  - john.nolan1@mycit.ie
 jdk:
 - oraclejdk8
 install:
