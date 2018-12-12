@@ -227,10 +227,6 @@ public class MqttPublish implements IMqttPublish, Comparable<MqttPublish> {
         if (log.isInfoEnabled()) {
             log.info("{} received {}: {}", name, topic, messageText);
         }
-        String[] keyValue = messageText.split(":");
-        if (keyValue.length != 3) {
-            return;
-        }
     }
 
     /**
@@ -265,13 +261,6 @@ public class MqttPublish implements IMqttPublish, Comparable<MqttPublish> {
     @Override
     public int compareTo(MqttPublish other) {
         return Integer.compare(this.getMessageList().size(), other.getMessageList().size());
-        /*if (this.getMessageList().size() < other.getMessageList().size()) {
-            return -1;
-        }
-        if (this.getMessageList().size() == other.getMessageList().size()) {
-            return 0;
-        }
-        return 1;*/
     }
 }
 

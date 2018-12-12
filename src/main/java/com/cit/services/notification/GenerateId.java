@@ -7,12 +7,18 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 class GenerateId {
+
     private static final Logger log = LoggerFactory.getLogger(GenerateId.class);
+
+    private GenerateId() {
+        throw new IllegalStateException("Utility class : call static methods only");
+    }
+
 
     static String generateClientId(){
         String generatedString = generateSafeToken();
         if (log.isInfoEnabled()) {
-            log.info(String.format("new client ID is: %s", generatedString));
+            log.info("new client ID is: {}", generatedString);
         }
         return generatedString;
     }
