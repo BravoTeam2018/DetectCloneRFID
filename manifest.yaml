@@ -1,0 +1,4 @@
+---
+applications:
+- name: detectclonerfid
+  path: ./target/target/detectclonerfid-0.0.1-SNAPSHOT.jar

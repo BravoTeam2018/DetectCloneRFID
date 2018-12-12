@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static com.cit.services.validation.rules.EventValidationRuleBook.POSSIBLE_TIME_DISTANCE_EVENT;
+
 @Service
 public class ValidationService implements IValidationService {
 
@@ -39,7 +41,7 @@ public class ValidationService implements IValidationService {
 
         // default to possible result
         ValidationRulesResult validationRulesResult = ValidationRulesResult.builder()
-                .reason("Possible time-distance event.")
+                .reason(POSSIBLE_TIME_DISTANCE_EVENT)
                 .validEvent(true)
                 .build();
 
