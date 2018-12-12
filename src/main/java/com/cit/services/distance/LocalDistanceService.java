@@ -32,7 +32,7 @@ public class LocalDistanceService implements IDistanceService {
 
             durationSeconds = (int)(distanceMtrs / AVERAGE_WALLING_SPEED_MTRS_PER_SECOND);
 
-        } else {  // WALK_AND_ELAVOTOR
+        } else {  // WALK_AND_ELEVATOR
 
             // This calculation takes in to account walking distance between gps location
             // then using an elevator if the location altitude(s) are different

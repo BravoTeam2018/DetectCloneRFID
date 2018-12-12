@@ -35,7 +35,7 @@ public class GoogleDistanceService implements IDistanceService {
         String baseUri = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric";
         String origin = String.format("%s,%s",current.getCoordinates().getLatitude(),current.getCoordinates().getLongitude());
         String destination = String.format("%s,%s",previous.getCoordinates().getLatitude(),previous.getCoordinates().getLongitude());
-        return String.format("%s&origins=%s&destinations=%s&key=%s&mode=%s", baseUri,origin,destination, key, mode.toString());
+        return String.format("%s&origins=%s&destinations=%s&key=%s&mode=%s", baseUri,origin,destination, key, mode.toString().toLowerCase());
     }
 
 
