@@ -66,7 +66,7 @@ class ValidationServiceTest {
                 .withDefaultResult(ValidationRulesResult.builder().reason("Possible time-distance event").validEvent(true).build())
                 .build();
 
-        GoogleDistanceService googleDistanceService =  new GoogleDistanceService(restTemplate,apikey);
+        googleDistanceService =  new GoogleDistanceService(restTemplate,apikey);
 
         validationService = new ValidationService(ruleBook, googleDistanceService);
 

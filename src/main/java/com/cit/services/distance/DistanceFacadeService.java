@@ -23,7 +23,7 @@ public class DistanceFacadeService implements IDistanceService {
 
         if (mode==Mode.DRIVING) {
             distanceResult = googleDistanceService.execute(current,previous,mode);
-        }  else if (mode == Mode.WALKING){
+        }  else if (mode == Mode.WALKING || mode == Mode.WALK_AND_ELAVOTOR){
             distanceResult = localDistanceService.execute(current,previous,mode);
         } else {
             distanceResult = flyAndDriveDistanceService.execute(current,previous,mode);

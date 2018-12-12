@@ -1,4 +1,4 @@
-package com.cit.services;
+package com.cit.services.distance;
 
 import com.cit.Helper;
 import com.cit.UnitTests;
@@ -6,6 +6,7 @@ import com.cit.config.ServicesConfig;
 import com.cit.models.DistanceResult;
 import com.cit.models.GPSCoordinate;
 import com.cit.models.Location;
+import com.cit.services.distance.DistanceFacadeService;
 import com.cit.services.distance.GoogleDistanceService;
 import com.cit.services.distance.IDistanceService;
 import org.junit.experimental.categories.Category;
@@ -21,14 +22,16 @@ import org.springframework.web.client.support.RestGatewaySupport;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.client.ExpectedCount.once;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
+
 @Category(UnitTests.class)
 @ContextConfiguration(classes = ServicesConfig.class)
-class GoogleDistanceResultServiceTest {
+class DistanceResultFacadeServiceTest {
+
+    private DistanceFacadeService distanceFacadeService;
 
     String apikey="GOOGLEKEY";
     RestTemplate restTemplate =  new RestTemplate();
@@ -65,16 +68,20 @@ class GoogleDistanceResultServiceTest {
 
         mockServer = MockRestServiceServer.createServer(gateway);
 
-        googleDistanceService = new GoogleDistanceService(restTemplate,apikey);
+
     }
 
     @Test
     void testSGoogleDistanceService_walking() throws IOException {
 
+        googleDistanceService = new GoogleDistanceService(restTemplate,apikey);
+        distanceFacadeService = new DistanceFacadeService(googleDistanceService,new LocalDistanceService(), new FlyAndDriveDistanceService());
+
+
         mockServer.expect(once(), requestTo(googleDistanceService.getRequestURL(CITWest, CITNorth, GoogleDistanceService.Mode.WALKING)))
                 .andRespond(withSuccess(Helper.getGoogleJson("mockData/google.json"), MediaType.APPLICATION_JSON));
 
-        DistanceResult responseDTO = googleDistanceService.execute(CITWest, CITNorth, IDistanceService.Mode.WALKING);
+        DistanceResult responseDTO = distanceFacadeService.execute(CITWest, CITNorth, IDistanceService.Mode.WALKING);
 
         System.out.println(responseDTO);
         assertEquals(true, responseDTO.getStatus().equals("OK"));
@@ -83,15 +90,19 @@ class GoogleDistanceResultServiceTest {
     @Test
     void testSGoogleDistanceService_driving() throws IOException {
 
+        googleDistanceService = new GoogleDistanceService(restTemplate,apikey);
+        distanceFacadeService = new DistanceFacadeService(googleDistanceService,new LocalDistanceService(), new FlyAndDriveDistanceService());
+
+
         mockServer.expect(once(), requestTo(googleDistanceService.getRequestURL(CITWest, CITNorth, GoogleDistanceService.Mode.DRIVING)))
                 .andRespond(withSuccess(Helper.getGoogleJson("mockData/google.json"), MediaType.APPLICATION_JSON));
 
-        DistanceResult responseDTO =  responseDTO = googleDistanceService.execute(CITWest, CITNorth, IDistanceService.Mode.DRIVING);
+        DistanceResult responseDTO =  responseDTO = distanceFacadeService.execute(CITWest, CITNorth, IDistanceService.Mode.DRIVING);
 
         System.out.println(responseDTO);
         assertEquals(true, responseDTO.getStatus().equals("OK"));
     }
 
 
-}
 
+}

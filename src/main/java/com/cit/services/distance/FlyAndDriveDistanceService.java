@@ -2,7 +2,6 @@ package com.cit.services.distance;
 
 import com.cit.models.DistanceResult;
 import com.cit.models.Location;
-import com.cit.services.validation.rules.PanelDistanceCalculator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +52,7 @@ public class FlyAndDriveDistanceService implements IDistanceService {
      */
     private int getTravelDistanceInMtrs(Location current, Location previous) {
 
-        double travelDistanceMtrsBetweenGPSPoints  = PanelDistanceCalculator.distanceInMtrsBetweenTwoLocations(current, previous);
+        double travelDistanceMtrsBetweenGPSPoints  = PanelDistanceCalculator.distanceInMtrsBetweenTwoLocationsIncludingAltitude(current, previous);
         if (log.isDebugEnabled()) {
             log.debug("Travel distance in Mtr={} \n CurrentLocation={} \n PreviousLocation = {}", travelDistanceMtrsBetweenGPSPoints, current, previous );
         }

@@ -1,9 +1,11 @@
-package com.cit.services.validation.rules;
+package com.cit.services.distance;
 
 import com.cit.models.Event;
 import com.cit.models.Location;
 
 import java.sql.Timestamp;
+
+import static java.lang.Math.abs;
 
 /**
  *  Used by rules engine to calculate distance and time between events
@@ -42,7 +44,7 @@ public class PanelDistanceCalculator {
      * @param previous  Prevous Access Event
      * @return distance in Mtrs between the two event's locations
      */
-    public static double distanceInMtrsBetweenTwoLocations(Location current, Location previous) {
+    public static double distanceInMtrsBetweenTwoLocationsIncludingAltitude(Location current, Location previous) {
 
         double lat1 = current.getCoordinates().getLatitude();
         double lon1 = current.getCoordinates().getLongitude();
@@ -54,6 +56,40 @@ public class PanelDistanceCalculator {
 
         return PanelDistanceCalculator.distance(lat1,lat2,lon1,lon2,el1,el2);
     }
+
+    /**
+     * distance in Mtrs between the two event's locations excluding altitude
+     * @param current   Current Access Event
+     * @param previous  Prevous Access Event
+     * @return distance in Mtrs between the two event's locations
+     */
+    public static double distanceInMtrsBetweenTwoLocationsExcludingAltitude(Location current, Location previous) {
+
+        double lat1 = current.getCoordinates().getLatitude();
+        double lon1 = current.getCoordinates().getLongitude();
+        double el1 = 0.0;
+
+        double lat2 = previous.getCoordinates().getLatitude();
+        double lon2 = previous.getCoordinates().getLongitude();
+        double el2 = 0.0;
+
+        return PanelDistanceCalculator.distance(lat1,lat2,lon1,lon2,el1,el2);
+    }
+
+    /**
+     * get the altitude difference in mtrs between two building locations
+     * @param current   Current Access Event
+     * @param previous  Prevous Access Event
+     * @return distance in Mtrs between the two event's locations
+     */
+    public static double altitudeDifferenceDistanceInMtrsBetweenTwoLocations(Location current, Location previous) {
+
+        double el1 = current.getAltitude();
+        double el2 = previous.getAltitude();
+
+        return abs(el1-el2);
+    }
+
 
 
     /**

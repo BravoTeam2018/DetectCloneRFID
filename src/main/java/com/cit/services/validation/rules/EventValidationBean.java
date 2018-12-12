@@ -3,6 +3,7 @@ package com.cit.services.validation.rules;
 import com.cit.models.DistanceResult;
 import com.cit.models.Event;
 import com.cit.services.distance.IDistanceService;
+import com.cit.services.distance.PanelDistanceCalculator;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -20,6 +21,8 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class EventValidationBean {
+
+    private static final String FLOOR_MATCHER = ".*First Floor.*|.*\\d+[st|nd|rd|th].*Floor.*";
 
     private IDistanceService distanceService;
     private Event current;
@@ -87,6 +90,27 @@ public class EventValidationBean {
         return result;
     }
 
+    public boolean hasPreviousEventStairsOrElevators() {
+
+        String previousRelativeLocation = previous.getLocation().getRelativeLocation();
+
+        boolean result = previousRelativeLocation.matches(FLOOR_MATCHER);
+
+        log.debug( "Previous event has stairsOrElevator ={},\nPreviousEvent={}", result, this.previous);
+
+        return result;
+    }
+
+    public boolean hasCurrentEventStairsOrElevators() {
+
+        String currentRelativeLocation = current.getLocation().getRelativeLocation();
+
+        boolean result = currentRelativeLocation.matches(FLOOR_MATCHER);
+
+        log.debug( "Current event has stairsOrElevator ={},\nCurrentEvent={}", result, this.current);
+
+        return result;
+    }
 
 
     public boolean isTheCurrentAndPreviousEventsInTheSameCountry() {
@@ -132,6 +156,22 @@ public class EventValidationBean {
 
         return result;
     }
+
+    public boolean isItPossibleToWalkAndTakeElevatorBetweenCurrentAndPreviousEvent() {
+        boolean result = false;
+
+        if (isTheCurrentAndPreviousEventsInTheSameCountry() || isTheCurrentAndPreviousEventsInTheSameBuilding())
+            if( hasPreviousEventStairsOrElevators() || hasCurrentEventStairsOrElevators() )
+                result = isItPossibleToTravelBetweenCurrentAndPreviousEvent(IDistanceService.Mode.WALK_AND_ELAVOTOR);
+
+
+        log.debug("Possibility of WALKING and Taking Elevator between these events within the timeframe of the last event is = {}\n, CurrentEvent={},\n PreviousEvent={}", result,
+                this.current, this.previous);
+
+        return result;
+    }
+
+
 
     public boolean isItPossibleToDriveBetweenCurrentAndPreviousEvent() {
 
