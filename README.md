@@ -1,6 +1,9 @@
 # DetectCloneRFID
 This is an REST webservice, which fulfills the CIT Assignment brief. In short a RFID clone access card detection REST service.
 
+# POC Demo
+Link to running Rest service in [Cloudfoundary](http://detectclonerfid.cfapps.io)
+
 # Building from source
 
 ## Prerequisites 
@@ -52,7 +55,6 @@ mvnw spring-boot:run
 mvnw sonar:sonar
 ```
 
-
 # Documentation
   - API Swagger documentation can be accessed typing http://localhost:8081 once the application is running
 
@@ -65,13 +67,5 @@ mvnw sonar:sonar
 
     - [Cucumber BDD (Part 2): Creating a Sample Java Project with Cucumber, TestNG, and Maven](https://medium.com/agile-vision/cucumber-bdd-part-2-creating-a-sample-java-project-with-cucumber-testng-and-maven-127a1053c180)
 
-
-# Remaining todo
-
-### Must 
-- [ ] UI for security guards for notification of invalid events
-
-
 ### Optional
-- [ ]  Add a new service to Push data to elk stack and add dashboard analysis of data
 - [ ] Blacklist feature
