@@ -1,6 +1,10 @@
-# DetectCloneRFID
- 
- 
+# DetectCloneRFID System
+- This is a system, which fulfills the CIT Assignment brief. 
+- In short a RFID clone access card detection REST service with backing services, addational trend analysis and security guard client application.
+
+# POC Demo
+Link to running Rest service in [Cloudfoundary](http://detectclonerfid.cfapps.io)
+
 #### Modules included
 - [DetectCloneRFID](https://github.com/BravoTeam2018/DetectCloneRFID)    
     - A Spring boot RFID clone access card detection REST Controller and backing services.  
@@ -20,7 +24,7 @@
 ![Context Diagram](docs/Context Diagram.png)
 
 
-## DetectCloneRFID
+## DetectCloneRFID Rest conttroller 
 
 ### Building from source
 
@@ -86,7 +90,7 @@ mvnw sonar:sonar
     - [Cucumber BDD (Part 2): Creating a Sample Java Project with Cucumber, TestNG, and Maven](https://medium.com/agile-vision/cucumber-bdd-part-2-creating-a-sample-java-project-with-cucumber-testng-and-maven-127a1053c180)
 
 
-### Remaining todo
+## Remaining todo
 
 ### Optional
 - [ ] Blacklist feature
