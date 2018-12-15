@@ -49,7 +49,7 @@ public class SwaggerConfig {
                 .termsOfServiceUrl("Terms of service")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
-                .contact(new Contact("Team Bravo - John Nolan, Eamon Foy", "https://github.com/BravoTeam2018/DetectCloneRFID", ""))
+                .contact(new Contact("Team Bravo - John Nolan, Eamon Foy", "https://github.com/BravoTeam2018", ""))
                 .build();
     }
 
