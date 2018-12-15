@@ -2,8 +2,8 @@
 - This is a system, which fulfills the CIT Assignment brief. 
 - In short a RFID clone access card detection REST service with backing services, addational trend analysis and security guard client application.
 
-# POC Demo
-Link to running Rest service in [Cloudfoundary](http://detectclonerfid.cfapps.io)
+### POC Demo
+- Link to running Rest service in [Cloudfoundary](http://detectclonerfid.cfapps.io)
 
 #### Modules included
 - [DetectCloneRFID](https://github.com/BravoTeam2018/DetectCloneRFID)    
