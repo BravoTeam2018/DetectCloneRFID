@@ -142,8 +142,8 @@ public class MqttPublish implements IMqttPublish, Comparable<MqttPublish> {
                 publish(this.topic,this.message);
             }
 
-            if (log.isInfoEnabled()) {
-                log.info("Connection made");
+            if (log.isDebugEnabled()) {
+                log.debug("Connection made");
             }
         }
     }
@@ -224,8 +224,8 @@ public class MqttPublish implements IMqttPublish, Comparable<MqttPublish> {
             return;
         }
         String messageText = new String(message.getPayload(), ENCODING);
-        if (log.isInfoEnabled()) {
-            log.info("{} received {}: {}", name, topic, messageText);
+        if (log.isDebugEnabled()) {
+            log.debug("{} received {}: {}", name, topic, messageText);
         }
     }
 
@@ -236,8 +236,8 @@ public class MqttPublish implements IMqttPublish, Comparable<MqttPublish> {
      */
     @Override
     public void deliveryComplete(IMqttDeliveryToken token) {
-        if (log.isInfoEnabled()) {
-            log.info("delivery complete");
+        if (log.isDebugEnabled()) {
+            log.debug("delivery complete");
         }
         available = true;
         if (messageList.size()>0){

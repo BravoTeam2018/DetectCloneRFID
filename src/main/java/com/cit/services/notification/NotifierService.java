@@ -66,7 +66,11 @@ public class NotifierService implements INotifierService{
      */
     private boolean findAvailablepublisher(){
         boolean found = false;
-        log.info(String.valueOf(list.size()));
+
+        if (log.isDebugEnabled()){
+            log.debug("publisher count = {}", String.valueOf(list.size()));
+        }
+
         for (MqttPublish mqttPublish:list) {
             if (mqttPublish.isPublishAvailable()){
                 if (log.isDebugEnabled()){

@@ -32,7 +32,9 @@ public class MessageActionListener implements IMqttActionListener {
     public void onSuccess(IMqttToken asyncActionToken) {
         if ((asyncActionToken != null) && asyncActionToken.getUserContext().equals(userContext))
         {
-            log.info( "Message '{}' published to topic '{}'", messageText, topic);
+            if(log.isDebugEnabled()) {
+                log.debug("Message '{}' published to topic '{}'", messageText, topic);
+            }
         }
     }
 

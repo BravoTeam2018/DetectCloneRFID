@@ -17,8 +17,8 @@ class GenerateId {
 
     static String generateClientId(){
         String generatedString = generateSafeToken();
-        if (log.isInfoEnabled()) {
-            log.info("new client ID is: {}", generatedString);
+        if (log.isDebugEnabled()) {
+            log.debug("new client ID is: {}", generatedString);
         }
         return generatedString;
     }

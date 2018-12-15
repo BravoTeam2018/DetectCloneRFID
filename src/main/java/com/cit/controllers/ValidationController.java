@@ -107,12 +107,13 @@ public class ValidationController {
         // Find last event for card
         Event previousEvent = eventStoreService.getLastEventForCardId(cardId);
 
+
         // Perform validation checks and response DTO
         ValidationServiceRestResponseDTO response  = validationService.performEventValidation(currentEvent,previousEvent);
 
+
         // Finally store current event in cache so we can find it the next time the card is used
         eventStoreService.storeEvent(currentEvent);
-
 
         validationService.setEventListener( (ValidationServiceMQTTResponseDTO validationServiceMQTTResponseDTO) -> {
 
@@ -121,6 +122,7 @@ public class ValidationController {
             String mqttMessageString = ValidationResponseMapper.toJsonString(validationServiceMQTTResponseDTO);
 
             log.debug("Clone detection result payload for subscribed MQTT Listeners (json) = {}", mqttMessageString);
+
             notifierService.publish(mqttMessageString);
 
         } );
