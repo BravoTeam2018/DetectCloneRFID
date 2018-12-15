@@ -21,7 +21,7 @@ Link to running Rest service in [Cloudfoundary](http://detectclonerfid.cfapps.io
     - [Source repository](https://github.com/BravoTeam2018/Subscriber)
 
 #### Architecture Context Diagram 
-![Context Diagram](DetectCloneRFID/docs/Context Diagram.png)
+![Context Diagram](https://github.com/BravoTeam2018/DetectCloneRFID/docs/Context Diagram.png)
 
 
 ## DetectCloneRFID Rest conttroller 
