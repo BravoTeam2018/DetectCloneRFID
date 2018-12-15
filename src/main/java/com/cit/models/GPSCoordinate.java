@@ -1,10 +1,8 @@
 package com.cit.models;
 
-import javax.persistence.Embeddable;
 
 @lombok.Data
 @lombok.Builder
-@Embeddable
 public class GPSCoordinate
 {
 

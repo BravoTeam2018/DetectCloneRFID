@@ -34,7 +34,6 @@ public class ServicesConfig {
     @Value("${mqtt.topic.name}")
     public static final String MQTT_TOPIC = "validation.alerts.bravo";
 
-
     /**
      * This is the main validation services configuration which is used to validate current and previous scan events
      * @return validationService
@@ -151,6 +150,5 @@ public class ServicesConfig {
      */
     @Bean
     RestTemplate restTemplate() { return new RestTemplate(); }
-
 
 }
