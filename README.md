@@ -24,7 +24,7 @@
 ![Context Diagram](https://github.com/BravoTeam2018/DetectCloneRFID/blob/master/docs/ContextDiagram.png)
 
 
-## DetectCloneRFID Rest conttroller 
+## DetectCloneRFID Rest controller and backing services
 
 ### Building from source
 
