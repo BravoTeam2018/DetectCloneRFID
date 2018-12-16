@@ -14,8 +14,13 @@ public class MQTTIntegrationTestUtils {
 
 
     static String localH2MvStoreDBPath() {
-        String currentDir = System.getProperty("user.dir");
-        return currentDir + File.separator + "build" + File.separator + DEFAULT_MOQUETTE_STORE_H2_DB_FILENAME;
+
+        String tmpDir = System.getProperty("java.io.tmpdir");
+        tmpDir = tmpDir + "build" ;
+        File dbPath = new File(tmpDir);
+        dbPath.mkdirs();
+
+        return tmpDir + File.separator + DEFAULT_MOQUETTE_STORE_H2_DB_FILENAME;
     }
 
     public static Properties prepareTestProperties() {
